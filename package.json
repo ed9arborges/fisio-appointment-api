@@ -4,7 +4,11 @@
   "main": "src/server.ts",
   "scripts": {
     "dev": "tsx watch src/server.ts",
-    "seed": "tsx prisma/seed.ts"
+    "build": "tsc --project tsconfig.json",
+    "start": "npm run migrate:deploy && node dist/server.js",
+    "migrate:deploy": "prisma migrate deploy",
+    "seed": "tsx prisma/seed.ts",
+    "postinstall": "prisma generate"
   },
   "author": "Edgar",
   "license": "ISC",
@@ -24,5 +28,8 @@
     "ts-node": "^10.9.2",
     "tsx": "^4.19.2",
     "typescript": "^5.9.2"
+  },
+  "engines": {
+    "node": ">=18.0.0"
   }
 }

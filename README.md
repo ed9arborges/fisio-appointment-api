@@ -25,16 +25,18 @@ RESTful backend for managing physiotherapy appointments. Built with Express, Typ
 
 2. **Environment variables**
 
-   Copy `.env.example` to `.env` and set the connection string for PostgreSQL:
+   Copy `.env.example` to `.env` and set the connection string plus any optional overrides:
 
    ```env
    DATABASE_URL="postgresql://USER:PASSWORD@HOST:PORT/DATABASE"
+   CORS_ORIGINS="http://localhost:5173,https://your-frontend.vercel.app"
+   # PORT=3333
    ```
 
 3. **Generate the Prisma client**
 
    ```bash
-   npx prisma generate
+   npm run postinstall
    ```
 
 4. **Apply database migrations**
@@ -59,9 +61,21 @@ RESTful backend for managing physiotherapy appointments. Built with Express, Typ
 
    The API listens on `http://localhost:3333`.
 
+7. **Production build & start**
+
+   ```bash
+   npm run build
+   npm start
+   ```
+
+   `npm start` runs `prisma migrate deploy` automatically before booting `dist/server.js`.
+
 ## Available Scripts
 
 - `npm run dev` – run the server in watch mode with TSX
+- `npm run build` – compile TypeScript to `dist`
+- `npm start` – run pending migrations and launch the compiled server
+- `npm run migrate:deploy` – apply migrations without starting the server
 - `npm run seed` – execute `prisma/seed.ts`
 - `npx prisma studio` – open Prisma Studio for inspecting data
 

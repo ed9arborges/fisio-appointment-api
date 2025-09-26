@@ -6,9 +6,24 @@ import { errorHandling } from "./middlewares/error-handling"
 
 const app = express()
 
+const defaultOrigins = ["http://localhost:5173", "http://localhost:3000"]
+const environmentOrigins =
+  process.env.CORS_ORIGINS?.split(",")
+    .map((origin) => origin.trim())
+    .filter(Boolean) ?? []
+const allowedOrigins = [...new Set([...defaultOrigins, ...environmentOrigins])]
+
+const allowAllOrigins = allowedOrigins.includes("*")
+
 app.use(
   cors({
-    origin: ["http://localhost:5173", "http://localhost:3000"],
+    origin(origin, callback) {
+      if (!origin || allowAllOrigins || allowedOrigins.includes(origin)) {
+        return callback(null, true)
+      }
+
+      return callback(new Error("Not allowed by CORS"))
+    },
     credentials: true,
   })
 )
