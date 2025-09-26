@@ -1,0 +1,138 @@
+{
+  "_type": "export",
+  "__export_format": 4,
+  "__export_date": "2025-09-26T00:00:00.000Z",
+  "__export_source": "generated.by.github.copilot",
+  "resources": [
+    {
+      "_id": "wrk_fisioappointments_api",
+      "_type": "workspace",
+      "name": "Fisio Appointment API",
+      "description": "Workspace for testing the physiotherapy appointments API.",
+      "scope": "collection"
+    },
+    {
+      "_id": "env_fisioappointments_api",
+      "_type": "environment",
+      "parentId": "wrk_fisioappointments_api",
+      "name": "Base Environment",
+      "data": {
+        "base_url": "http://localhost:3333",
+        "appointment_id": "replace-with-appointment-id"
+      }
+    },
+    {
+      "_id": "fld_fisioappointments_routes",
+      "_type": "request_group",
+      "parentId": "wrk_fisioappointments_api",
+      "name": "Appointments",
+      "description": "Endpoints related to appointment management"
+    },
+    {
+      "_id": "req_fisio_root",
+      "_type": "request",
+      "parentId": "wrk_fisioappointments_api",
+      "name": "GET /",
+      "method": "GET",
+      "url": "{{ _.base_url }}/",
+      "body": {},
+      "parameters": [],
+      "headers": [],
+      "authentication": {},
+      "metaSortKey": -1
+    },
+    {
+      "_id": "req_fisio_health",
+      "_type": "request",
+      "parentId": "wrk_fisioappointments_api",
+      "name": "GET /health",
+      "method": "GET",
+      "url": "{{ _.base_url }}/health",
+      "body": {},
+      "parameters": [],
+      "headers": [],
+      "authentication": {},
+      "metaSortKey": 0
+    },
+    {
+      "_id": "req_fisio_create_appointment",
+      "_type": "request",
+      "parentId": "fld_fisioappointments_routes",
+      "name": "POST /appointments",
+      "method": "POST",
+      "url": "{{ _.base_url }}/appointments",
+      "body": {
+        "mimeType": "application/json",
+        "text": "{\n  \"date\": \"2025-09-26\",\n  \"time\": \"14:00\",\n  \"client\": \"John Doe\"\n}"
+      },
+      "parameters": [],
+      "headers": [
+        {
+          "name": "Content-Type",
+          "value": "application/json"
+        }
+      ],
+      "metaSortKey": 1
+    },
+    {
+      "_id": "req_fisio_get_by_date",
+      "_type": "request",
+      "parentId": "fld_fisioappointments_routes",
+      "name": "GET /appointments?date",
+      "method": "GET",
+      "url": "{{ _.base_url }}/appointments",
+      "body": {},
+      "parameters": [
+        {
+          "name": "date",
+          "value": "2025-09-26",
+          "disabled": false
+        }
+      ],
+      "headers": [],
+      "metaSortKey": 2
+    },
+    {
+      "_id": "req_fisio_get_all",
+      "_type": "request",
+      "parentId": "fld_fisioappointments_routes",
+      "name": "GET /appointments/all",
+      "method": "GET",
+      "url": "{{ _.base_url }}/appointments/all",
+      "body": {},
+      "parameters": [],
+      "headers": [],
+      "metaSortKey": 3
+    },
+    {
+      "_id": "req_fisio_available_slots",
+      "_type": "request",
+      "parentId": "fld_fisioappointments_routes",
+      "name": "GET /appointments/available-slots",
+      "method": "GET",
+      "url": "{{ _.base_url }}/appointments/available-slots",
+      "body": {},
+      "parameters": [
+        {
+          "name": "date",
+          "value": "2025-09-26",
+          "disabled": false
+        }
+      ],
+      "headers": [],
+      "metaSortKey": 4
+    },
+    {
+      "_id": "req_fisio_delete_appointment",
+      "_type": "request",
+      "parentId": "fld_fisioappointments_routes",
+      "name": "DELETE /appointments/:id",
+      "method": "DELETE",
+      "url": "{{ _.base_url }}/appointments/{{ _.appointment_id }}",
+      "body": {},
+      "parameters": [],
+      "headers": [],
+      "metaSortKey": 5
+    }
+  ]
+}

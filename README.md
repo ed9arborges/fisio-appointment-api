@@ -61,7 +61,11 @@ RESTful backend for managing physiotherapy appointments. Built with Express, Typ
 
    The API listens on `http://localhost:3333`.
 
-7. **Production build & start**
+7. **(Optional) Import Insomnia workspace**
+
+   Use `insomnia-collection.json` to pre-load example requests for every endpoint. In Insomnia, go to **Application Menu → File → Import → From File...** and select the JSON file to load the workspace.
+
+8. **Production build & start**
 
    ```bash
    npm run build
